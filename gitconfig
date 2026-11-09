@@ -1,0 +1,7 @@
+[user]
+	name = Bruno Ribeiro
+	email = bruno@ribeiro.sh
+[core]
+	editor = vi
+[init]
+	defaultBranch = master

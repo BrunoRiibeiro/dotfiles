@@ -1,0 +1,5 @@
+(add-to-list 'load-path "~/.emacs.d/evil")
+(require 'evil)
+(evil-mode 1)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(custom-set-variables '(package-selected-packages '(htmlize)))

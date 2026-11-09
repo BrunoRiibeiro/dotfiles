@@ -1,0 +1,7 @@
+[submodule "emacs.d/evil"]
+	path = emacs.d/evil
+	url = https://github.com/emacs-evil/evil.git
+
+[submodule "vim/pack/plugins/start/vim-ai"]
+	path = vim/pack/plugins/start/vim-ai
+	url = https://github.com/madox2/vim-ai.git
