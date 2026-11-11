@@ -76,3 +76,27 @@ prompt-init() {
 }
 
 prompt-init
+
+# upload a file to my personal CDN
+cdn() {
+	local file=$1
+	local bname=${file##*/}
+	local srht_token=$(awk -F'"' '/access-token/ {print $2}' ~/.config/hut/config)
+
+	[[ -n $file && -n $bname && -n $srht_token ]] || return 1
+
+	local url
+	printf -v url '%(%Y/%m/%d)T/%s' -1 "$bname"
+	local remote_path="./cdn/$url"
+	local domain="cdn.ribeiro.sh"
+
+	rsync -avh --mkpath --progress --ignore-existing -- \
+		"$file" "chococino:$remote_path" || return 1
+
+	ssh chococino "tar -C ${remote_path%/$url} -czf - ." |
+		curl --fail-with-body --show-error --silent \
+		--oauth2-bearer "$srht_token" -F content=@- \
+		"https://pages.sr.ht/publish/$domain" > /dev/null || return 1
+
+	echo "https://$domain/$url"
+}
