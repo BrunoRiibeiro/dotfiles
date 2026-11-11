@@ -19,6 +19,7 @@ export TZ='America/Sao_Paulo'
 export VISUAL='vi'
 
 # Support colors in less
+export GROFF_NO_SGR=1
 export LESS_TERMCAP_mb=$'\e[1;31m'
 export LESS_TERMCAP_md=$'\e[1;31m'
 export LESS_TERMCAP_me=$'\e[0m'
